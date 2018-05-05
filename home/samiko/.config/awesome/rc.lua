@@ -122,6 +122,24 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+battery_widget = require("battery_widget") {
+    adapter = "BAT0",
+    limits = {
+        { 25, "red"   },
+        { 50, "orange"},
+        {100, "green" }
+    },
+    listen = false,
+    timeout = 10,
+    widget_text = "${color_on}${percent}%${color_off}",
+    widget_font = "Deja Vu Sans Mono 14",
+    tooltip_text = "Battery ${state}${time_est}",
+    alert_threshold = 5,
+    alert_timeout = 0,
+    alert_title = "Low battery !",
+    alert_text = "${AC_BAT}${time_est}"
+}
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -212,6 +230,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            battery_widget,
             mytextclock,
         },
     }
@@ -279,6 +298,12 @@ globalkeys = gears.table.join(
               {description = "open a browser", group = "launcher"}),
     awful.key({ modkey,           }, "a", function () awful.spawn(file_manager) end,
               {description = "open a file manager", group = "launcher"}),
+
+    -- Multimedia keys
+    awful.key({                   }, "XF86MonBrightnessUp", function () awful.spawn("xbacklight -inc 10 intel_brightness") end,
+              {description = "increase brightness", group = "awesome"}),
+    awful.key({                   }, "XF86MonBrightnessDown", function () awful.spawn("xbacklight -dec 10 intel_brightness") end,
+              {description = "decrease brightness", group = "awesome"}),
 
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
