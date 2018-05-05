@@ -304,6 +304,10 @@ globalkeys = gears.table.join(
               {description = "increase brightness", group = "awesome"}),
     awful.key({                   }, "XF86MonBrightnessDown", function () awful.spawn("xbacklight -dec 10 intel_brightness") end,
               {description = "decrease brightness", group = "awesome"}),
+    awful.key({                   }, "XF86AudioRaiseVolume", function () awful.spawn("amixer sset Master 5%+") end,
+              {description = "increase brightness", group = "awesome"}),
+    awful.key({                   }, "XF86AudioLowerVolume", function () awful.spawn("amixer sset Master 5%-") end,
+              {description = "decrease brightness", group = "awesome"}),
 
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
