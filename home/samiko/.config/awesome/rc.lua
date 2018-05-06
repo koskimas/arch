@@ -63,14 +63,19 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+
 beautiful.wallpaper = "/usr/share/pixmaps/background.jpg"
 beautiful.font = "DejaVu Sans 14"
 beautiful.wibar_height = 24
+beautiful.border_width = 1
+beautiful.useless_gap = 0
+beautiful.bg_normal = "#1E1E1E"
+beautiful.bg_focus = "#333333"
+beautiful.border_focus = "#666666"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "gnome-terminal -e fish"
 editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
 browser = "chromium"
 file_manager = "nautilus"
 
@@ -100,62 +105,6 @@ awful.layout.layouts = {
   -- awful.layout.suit.corner.sw,
   -- awful.layout.suit.corner.se,
 }
--- }}}
-
--- {{{ Helper functions
-local function client_menu_toggle_fn()
-  local instance = nil
-
-  return function()
-    if instance and instance.wibox.visible then
-      instance:hide()
-      instance = nil
-    else
-      instance = awful.menu.clients({theme = {width = 250}})
-    end
-  end
-end
--- }}}
-
--- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-  {
-    "hotkeys",
-    function()
-      return false, hotkeys_popup.show_help
-    end
-  },
-
-  {"manual", terminal .. " -e man awesome"},
-  {"edit config", editor_cmd .. " " .. awesome.conffile},
-  {"restart", awesome.restart},
-
-  {
-    "quit",
-    function()
-      awesome.quit()
-    end
-  }
-}
-
-mymainmenu = awful.menu(
-  {
-    items = {
-      {"awesome", myawesomemenu, beautiful.awesome_icon},
-      {"open terminal", terminal}
-    }
-  }
-)
-
-mylauncher = awful.widget.launcher(
-  {
-    image = beautiful.awesome_icon,
-    menu = mymainmenu
-  }
-)
-
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- {{{ Wibar
@@ -246,8 +195,6 @@ local tasklist_buttons = gears.table.join(
     end
   ),
 
-  awful.button({}, 3, client_menu_toggle_fn()),
-
   awful.button(
     {},
     4,
@@ -308,11 +255,13 @@ awful.screen.connect_for_each_screen(
       {
         -- Left widgets
         layout = wibox.layout.fixed.horizontal,
-        mylauncher,
         s.mytaglist,
         s.mypromptbox
       },
-      s.mytasklist, -- Middle widget
+
+      -- Middle widget
+      s.mytasklist, 
+      
       {
         -- Right widgets
         layout = wibox.layout.fixed.horizontal,
@@ -368,15 +317,6 @@ globalkeys = gears.table.join(
   ),
 
   awful.key(
-    {modkey},
-    "w",
-    function()
-      mymainmenu:show()
-    end,
-    {description = "show main menu", group = "awesome"}
-  ),
-
-  awful.key(
     {modkey, "Shift"},
     "j",
     function()
@@ -395,30 +335,11 @@ globalkeys = gears.table.join(
   ),
 
   awful.key(
-    {modkey, "Control"},
-    "j",
-    function()
-      awful.screen.focus_relative(1)
-    end,
-    {description = "focus the next screen", group = "screen"}
-  ),
-
-  awful.key(
-    {modkey, "Control"},
-    "k",
-    function()
-      awful.screen.focus_relative(-1)
-    end,
-    {description = "focus the previous screen", group = "screen"}
-  ),
-
-  awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
-
-  awful.key(
     {modkey},
     "Tab",
     function()
       awful.client.focus.history.previous()
+
       if client.focus then
         client.focus:raise()
       end
@@ -451,6 +372,36 @@ globalkeys = gears.table.join(
       awful.spawn(file_manager)
     end,
     {description = "open a file manager", group = "launcher"}
+  ),
+
+  awful.key(
+    {modkey, "Shift"},
+    "s",
+    function()
+      awful.spawn("/home/samiko/Bin/sshot")
+
+      naughty.notify(
+        {
+          text = "Screenshot taken"
+        }
+      )
+    end,
+    {description = "take a screenshot", group = "awesome"}
+  ),
+
+  awful.key(
+    {modkey, "Shift"},
+    "w",
+    function()
+      awful.spawn("/home/samiko/Bin/wshot")
+
+      naughty.notify(
+        {
+          text = "Windowshot taken"
+        }
+      )
+    end,
+    {description = "take a windowshot", group = "awesome"}
   ),
 
   awful.key(
@@ -551,6 +502,7 @@ globalkeys = gears.table.join(
     "n",
     function()
       local c = awful.client.restore()
+
       -- Focus restored client
       if c then
         client.focus = c
@@ -568,6 +520,7 @@ globalkeys = gears.table.join(
     end,
     {description = "run prompt", group = "launcher"}
   ),
+
   awful.key(
     {modkey},
     "x",
@@ -702,6 +655,7 @@ for i = 1, 9 do
       function()
         local screen = awful.screen.focused()
         local tag = screen.tags[i]
+        
         if tag then
           tag:view_only()
         end
@@ -789,6 +743,7 @@ awful.rules.rules = {
       placement = awful.placement.no_overlap + awful.placement.no_offscreen
     }
   },
+  
   -- Floating clients.
   {
     rule_any = {
@@ -817,6 +772,7 @@ awful.rules.rules = {
     },
     properties = {floating = true}
   },
+
   -- Don't add titlebars to normal clients and dialogs
   {
     rule_any = {
