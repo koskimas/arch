@@ -31,7 +31,7 @@
     background-color: #22242d;
     color: #D3DAE3; }
   .gtkstyle-fallback:disabled {
-    background-color: #3C3C3C;
+    background-color: #404040;
     color: rgba(211, 218, 227, 0.45); }
   .gtkstyle-fallback:selected {
     background-color: #5294e2;
@@ -104,7 +104,7 @@ popover.background.osd,
 popover.background.magnifier, .csd popover.background.osd, .csd popover.background.magnifier, .osd .scale-popup, .osd {
   color: #BAC3CF;
   border: none;
-  background-color: #353945;
+  background-color: #333333;
   background-clip: padding-box;
   box-shadow: none; }
 
@@ -322,7 +322,7 @@ button, .budgie-panel button {
     box-shadow: none; }
   button.osd {
     color: #BAC3CF;
-    background-color: #353945;
+    background-color: #333333;
     border-color: #23262e; }
     button.osd.image-button {
       padding: 0;
@@ -2695,7 +2695,7 @@ row.activatable:selected.has-open-popup, .budgie-menu button:selected.has-open-p
 .app-notification {
   padding: 10px;
   color: #BAC3CF;
-  background-color: #353945;
+  background-color: #333333;
   background-clip: border-box;
   border-radius: 0 0 2px 2px;
   border-width: 0 1px 1px 1px;
@@ -2798,7 +2798,7 @@ filechooserbutton:drop(active) {
 
 .sidebar {
   border-style: none;
-  background-color: #3C3C3C; }
+  background-color: #404040; }
   stacksidebar.sidebar:dir(ltr) list,
   stacksidebar.sidebar.left list,
   stacksidebar.sidebar.left:dir(rtl) list, .sidebar:dir(ltr), .sidebar.left, .sidebar.left:dir(rtl) {
@@ -3442,7 +3442,7 @@ popover.background label.nautilus-canvas-item.separator, headerbar .nautilus-can
   background-color: #333333; }
 
 .gedit-search-slider {
-  background-color: #3C3C3C;
+  background-color: #404040;
   padding: 6px;
   border-color: #2b2e39;
   border-radius: 0 0 2px 2px;
@@ -3660,7 +3660,7 @@ button.documents-favorite:active:hover {
 #gf-candidate-popup,
 #gf-candidate-popup.solid {
   color: #cfd5de;
-  background-color: #353945;
+  background-color: #333333;
   border: 1px solid #23262e;
   border-radius: 2px; }
 
@@ -4334,7 +4334,7 @@ filechooser.csd.background, filechooser placessidebar list,
 
 filechooser placessidebar.sidebar,
 .nautilus-window placessidebar.sidebar {
-  background-color: #353945; }
+  background-color: #333333; }
   filechooser placessidebar.sidebar row.sidebar-row,
   .nautilus-window placessidebar.sidebar row.sidebar-row {
     border: none;
@@ -4399,11 +4399,11 @@ filechooser placessidebar.sidebar,
 
 filechooser.maximized placessidebar.sidebar,
 .nautilus-window.maximized placessidebar.sidebar {
-  background-color: #353945; }
+  background-color: #333333; }
 
 .nemo-window .sidebar {
   color: #BAC3CF;
-  background-color: #353945; }
+  background-color: #333333; }
   .nemo-window .sidebar .view, .nemo-window .sidebar iconview, .nemo-window .sidebar row {
     background-color: transparent;
     color: #BAC3CF; }
@@ -4423,7 +4423,7 @@ filechooser.maximized placessidebar.sidebar,
 .caja-side-pane treeview {
   color: #BAC3CF;
   caret-color: #BAC3CF;
-  background-color: #353945; }
+  background-color: #333333; }
 
 .caja-side-pane > box button:not(:active):not(:checked), .budgie-panel .caja-side-pane > box button:not(:active):not(:checked) {
   color: #BAC3CF; }
@@ -4436,7 +4436,7 @@ filechooser.maximized placessidebar.sidebar,
 
 filechooser actionbar {
   color: #BAC3CF;
-  background-color: #353945;
+  background-color: #333333;
   border-color: #14151a; }
   filechooser actionbar label, filechooser actionbar combobox {
     color: #BAC3CF; }
@@ -4451,9 +4451,9 @@ filechooser actionbar {
   background-image: linear-gradient(to bottom, #2b2e39, #2b2e39); }
 
 .gedit-document-panel {
-  background-color: #353945; }
+  background-color: #333333; }
   .maximized .gedit-document-panel {
-    background-color: #353945; }
+    background-color: #333333; }
   .gedit-document-panel row {
     color: #BAC3CF;
     background-color: rgba(186, 195, 207, 0); }
@@ -4530,7 +4530,7 @@ filechooser placessidebar.sidebar scrollbar,
 @define-color base_color #404552;
 @define-color selected_bg_color #5294e2;
 @define-color selected_fg_color #ffffff;
-@define-color insensitive_bg_color #3C3C3C;
+@define-color insensitive_bg_color #404040;
 @define-color insensitive_fg_color alpha(#d3dae3, 0.5);
 @define-color insensitive_base_color #404552;
 @define-color theme_unfocused_fg_color #D3DAE3;
@@ -5010,10 +5010,10 @@ calendar.raven-calendar {
   color: #BAC3CF;
   border-radius: 2px; }
   .budgie-notification-window .drop-shadow, .budgie-osd-window .drop-shadow {
-    background-color: #353945; }
+    background-color: #333333; }
 
 .budgie-notification, .budgie-osd, .budgie-switcher-window, .budgie-switcher {
-  background-color: #353945;
+  background-color: #333333;
   color: #BAC3CF; }
   .budgie-notification .notification-title, .budgie-osd .notification-title, .budgie-switcher-window .notification-title, .budgie-switcher .notification-title {
     font-size: 110%;
@@ -5027,7 +5027,7 @@ calendar.raven-calendar {
 .budgie-switcher-window .drop-shadow {
   margin: 8px 8px 16px;
   border-radius: 2px;
-  background-color: #353945;
+  background-color: #333333;
   box-shadow: rgba(0, 0, 0, 0.28); }
   .budgie-switcher-window .drop-shadow label.budgie-switcher-title {
     color: #BAC3CF; }
