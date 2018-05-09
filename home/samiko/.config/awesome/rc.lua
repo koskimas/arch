@@ -76,7 +76,7 @@ beautiful.border_focus = "#666666"
 -- This is used later as the default terminal and editor to run.
 terminal = "gnome-terminal -e fish"
 editor = os.getenv("EDITOR") or "nano"
-browser = "chromium"
+browser = "google-chrome-stable"
 file_manager = "nautilus"
 
 -- Default modkey.
@@ -410,7 +410,7 @@ globalkeys = gears.table.join(
     {},
     "XF86MonBrightnessUp",
     function()
-      awful.spawn("xbacklight -inc 10 intel_brightness")
+      awful.spawn("xbacklight -inc 5 intel_brightness")
     end,
     {description = "increase brightness", group = "awesome"}
   ),
@@ -419,7 +419,7 @@ globalkeys = gears.table.join(
     {},
     "XF86MonBrightnessDown",
     function()
-      awful.spawn("xbacklight -dec 10 intel_brightness")
+      awful.spawn("xbacklight -dec 5 intel_brightness")
     end,
     {description = "decrease brightness", group = "awesome"}
   ),
