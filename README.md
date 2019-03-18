@@ -20,7 +20,7 @@ cd
 pacstrap /mnt
 arch-chroot /mnt
 pacman -S git
-git config --global user.email "koskomi@gmail.com"
+git config --global user.email "leeloo@dallas.com"
 git config --global user.name "Sami Koskimäki"
 cd
 git clone https://github.com/koskimas/arch.git
